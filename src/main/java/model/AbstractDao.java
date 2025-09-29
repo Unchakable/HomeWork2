@@ -24,7 +24,6 @@ public abstract class AbstractDao<T, Id> implements Dao<T, Id> {
         try {
             session = SessionFactoryHelper.getSessionFactory().openSession();
             T entity = session.find(clazz, id);
-            session.close();
             if (entity == null) {
                 logger.debug("{} with ID: {} not found", clazz.getSimpleName(), id);
                 return Optional.empty();
@@ -44,7 +43,6 @@ public abstract class AbstractDao<T, Id> implements Dao<T, Id> {
         try {
             session = SessionFactoryHelper.getSessionFactory().openSession();
             Query<T> query = session.createQuery("FROM " + clazz.getName(), clazz);
-            session.close();
             return query.list();
         } catch (Exception e) {
             logger.error("Error finding all {}", clazz.getSimpleName(), e);
@@ -62,7 +60,6 @@ public abstract class AbstractDao<T, Id> implements Dao<T, Id> {
             transaction = session.beginTransaction();
             session.persist(entity);
             transaction.commit();
-            session.close();
         } catch (Exception e) {
             if (transaction != null) {
                 try {
@@ -86,7 +83,6 @@ public abstract class AbstractDao<T, Id> implements Dao<T, Id> {
             transaction = session.beginTransaction();
             session.merge(entity);
             transaction.commit();
-            session.close();
         } catch (Exception e) {
             if (transaction != null) {
                 try {
@@ -111,7 +107,6 @@ public abstract class AbstractDao<T, Id> implements Dao<T, Id> {
             transaction = session.beginTransaction();
             session.remove(entity);
             transaction.commit();
-            session.close();
         } catch (Exception e) {
             if (transaction != null) {
                 try {
@@ -139,7 +134,6 @@ public abstract class AbstractDao<T, Id> implements Dao<T, Id> {
                 session.remove(entity);
             }
             transaction.commit();
-            session.close();
         } catch (Exception e) {
             if (transaction != null) {
                 try {
