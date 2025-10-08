@@ -14,7 +14,7 @@
         <property name="show_sql">true</property>
         <property name="hbm2ddl.auto">update</property>
 
-        <mapping class="model.User"/>
-        <mapping class="model.Status"/>
+        <mapping class="model.User.User"/>
+        <mapping class="model.Status.Status"/>
     </session-factory>
 </hibernate-configuration>

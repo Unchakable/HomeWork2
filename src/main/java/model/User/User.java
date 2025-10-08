@@ -1,7 +1,9 @@
-package model;
+package model.User;
 
 import jakarta.persistence.*;
 import lombok.*;
+import model.Status.Status;
+
 import java.time.LocalDateTime;
 
 @Entity

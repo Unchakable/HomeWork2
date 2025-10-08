@@ -1,7 +1,9 @@
-package model;
+package model.Status;
 
 import jakarta.persistence.*;
 import lombok.*;
+import model.User.User;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +36,6 @@ public class Status {
     @EqualsAndHashCode.Include
     private String content;
 
-    @Column(name = "user_id")
     @OneToMany(mappedBy = "status", fetch = FetchType.LAZY)
     private List<User> users = new ArrayList<>();
 }

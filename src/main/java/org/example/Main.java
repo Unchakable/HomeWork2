@@ -1,9 +1,10 @@
 package org.example;
 
-import model.Status;
-import model.StatusDao;
-import model.User;
-import model.UserDao;
+import model.Status.Status;
+import model.Status.StatusDao;
+import model.User.User;
+import model.User.UserDao;
+
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -22,14 +23,14 @@ public class Main {
 //        userDao.save(user1);
 //        Optional<User> optional = userDao.get(1);
 //        System.out.println(optional.map(User::getName).orElse("Unknown"));
-//        Optional<User> optional1 = userDao.get(4);
+//        Optional<User> optional1 = userDao.get(6);
 //        if (optional1.isPresent()){
 //            User user = optional1.get();
 //            user.setName("Петр");
 //            userDao.update(user);
 //        }
-//        userDao.deleteById(3);
-//        Optional<User> optional1 = userDao.get(4);
+//        userDao.deleteById(6);
+//        Optional<User> optional1 = userDao.get(5);
 //        System.out.println(optional1.toString());
 //        optional1.ifPresent(userDao::delete);
     }
