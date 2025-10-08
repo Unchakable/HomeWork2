@@ -33,7 +33,6 @@ public abstract class AbstractDao<T, Id> implements Dao<T, Id> {
         } catch (Exception e) {
             logger.error("Error finding {} by ID: {}", clazz.getSimpleName(), id, e);
             return Optional.empty();
-        } finally {
         }
     }
 
@@ -52,7 +51,7 @@ public abstract class AbstractDao<T, Id> implements Dao<T, Id> {
     }
 
     @Override
-    public void save(T entity) {
+    public boolean save(T entity) {
         Transaction transaction = null;
         try {
             Session session = SessionFactoryHelper.getSessionFactory().openSession();
@@ -60,6 +59,7 @@ public abstract class AbstractDao<T, Id> implements Dao<T, Id> {
             session.persist(entity);
             transaction.commit();
             session.close();
+            return true;
         } catch (Exception e) {
             if (transaction != null) {
                 try {
@@ -71,6 +71,7 @@ public abstract class AbstractDao<T, Id> implements Dao<T, Id> {
             }
             logger.error("Error saving {}", clazz.getSimpleName(), e);
         }
+        return false;
     }
 
     @Override
